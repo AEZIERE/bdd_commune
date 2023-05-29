@@ -103,10 +103,8 @@ def make_row_to_insert(row):
 
     return (row)
 
-def insert_engine():
+def insert_engine(df,name_table):
 
-    df = pd.read_csv("./base_cc_comparateur.csv", sep=";")
-    df_meta = pd.read_csv("./meta_base_cc_comparateur.csv", sep=";")
     print(len(df.index))
 
     #add col a df et lamda
@@ -121,7 +119,7 @@ def insert_engine():
     time_start = time.time()
 
     # create table and columns
-    name_table = "stats_maille"
+    #name_table = "stats_maille"
     columns = df.columns.tolist()
     columns = [column.lower() for column in columns]
 
@@ -147,4 +145,5 @@ def insert_engine():
 
 if __name__ == "__main__":
     #print(select_ids_mailage(["01001", "01002", "2A001"], "commune"))
-    insert_engine()
+    df = pd.read_csv("csv_insert/base_cc_comparateur.csv", sep=";")
+    insert_engine(df, "stats_maille")
